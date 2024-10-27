@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Model\Admin;
+use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller
+class UserController extends Controller
 {
-    public function getAllAdmin()
+    public function getAllUser()
     {
-        $result = Admin::paginate(10);
+        $result = User::paginate(10);
         if (count($result) > 0) return response()->json(['status' => 'OK', 'data' => $result], 200);
         return response()->json(['status' => 'NG', 'message' => 'Data does not exist!'], 200);
     }
@@ -25,17 +25,17 @@ class AdminController extends Controller
             'password' => 'required',
         ]);
 
-        $adminCode = DB::table('admins')->latest()->value('admin_code');
-        if($adminCode != null){
-            $adminCode = $adminCode + 1;
+        $userCode = DB::table('users')->latest()->value('user_code');
+        if($userCode != null){
+            $userCode = $userCode + 1;
         }else{
-            $adminCode = 20001;
+            $userCode = 20001;
         }
         
         $name = $request->name;
         $password = $request->password;
-        $result = Admin::insert([
-            'admin_code' => $adminCode,
+        $result = User::insert([
+            'user_code' => $userCode,
             'name' => $name,
             'password' => $password,
         ]);
@@ -45,7 +45,7 @@ class AdminController extends Controller
 
     public function show($id)
     {
-        $result = Admin::where('id', $id)->first();
+        $result = User::where('id', $id)->first();
         if (!empty($result))  return response()->json(['status' => 'OK', 'data' => $result], 200);
         return response()->json(['status' => 'NG', 'message' => 'Data does not exist!'], 200);
     }
@@ -53,10 +53,10 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'name' => "required|unique:admins,name," . $id . ",id,deleted_at,NULL|max:255",
+            'name' => "required|unique:users,name," . $id . ",id,deleted_at,NULL|max:255",
             'password' => 'required',
         ]);
-        $result = Admin::where('id', $id)
+        $result = User::where('id', $id)
             ->update([
                 'name' => $request->name,
                 'password' => $request->password
@@ -67,21 +67,21 @@ class AdminController extends Controller
 
     public function delete($id)
     {
-        $result = Admin::where('id',$id)->delete();
+        $result = User::where('id',$id)->delete();
         if ($result)    return response()->json(['status' => 'OK', 'message' => 'Data was deleted successfully!']);;
         return response()->json(['status' => 'NG', 'message' => 'Delete Failed!'], 200);
     }
 
     public function login(Request $request)
     {
-        $admin = Admin::where('admin_code',$request->admin_code)->first();
-        if($admin != null){
-            if($request->password != $admin->password){
+        $users = User::where('user_code',$request->user_code)->first();
+        if($users != null){
+            if($request->password != $users->password){
                 return response()->json(['status' => 'NG', 'message' => 'Incorrect Password!'], 200);
             }
-            return response()->json(['status' => 'OK', 'message' => 'Login successfully!','type' => 'admin'], 200);
+            return response()->json(['status' => 'OK', 'message' => 'Login successfully!','type' => 'user'], 200);
         }else{
-            return  response()->json(['status' => 'NG', 'message' => 'Admin does not exists!'], 200);
+            return  response()->json(['status' => 'NG', 'message' => 'User does not exists!'], 200);
         }
     }
 }
