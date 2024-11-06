@@ -32,6 +32,15 @@ Route::prefix('admin')->namespace('API')->group(function(){
     Route::delete('/delete/{id}','AdminController@delete');
 });
 
+Route::prefix('user')->namespace('API')->group(function(){
+    Route::get('/login',"UserController@login");
+    Route::get('/get',"UserController@getAllUser");
+    Route::post('/save',"UserController@save");
+    Route::get('/edit/{id}','UserController@show');
+    Route::post('/update/{id}','UserController@update');
+    Route::delete('/delete/{id}','UserController@delete');
+});
+
 Route::prefix('employee')->namespace('API')->group(function(){
     Route::get('/get',"EmployeeController@getAllEmployee");
     Route::post('/save',"EmployeeController@save");
