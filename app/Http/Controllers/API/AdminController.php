@@ -77,7 +77,7 @@ class AdminController extends Controller
         $admin = Admin::where('user_code',$request->user_code)->first();
         if($admin != null){
             if($request->password != $admin->password){
-                return response()->json(['status' => 'NG', 'message' => 'Incorrect Password!'], 200);
+                return response()->json(['status' => 'NG', 'message' => 'Incorrect Admin Password!'], 200);
             }
             return response()->json(['status' => 'OK', 'message' => 'Login successfully!'], 200);
         }else{

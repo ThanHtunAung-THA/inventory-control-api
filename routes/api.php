@@ -50,3 +50,11 @@ Route::prefix('employee')->namespace('API')->group(function(){
     Route::get('/search',"EmployeeController@search");
 });
 
+Route::prefix('sale')->namespace('API')->group(function(){
+    Route::get('/get',"SaleController@getAllSales"); // Get all sales
+    Route::post('/save',"SaleController@save"); // Save a new sale
+    Route::get('/edit/{id}','SaleController@show'); // Get a specific sale by ID
+    Route::post('/update/{id}','SaleController@update'); // Update a specific sale by ID
+    Route::delete('/delete/{id}','SaleController@delete'); // Delete a specific sale by ID
+});
+

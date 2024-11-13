@@ -77,7 +77,7 @@ class UserController extends Controller
         $user = User::where('user_code',$request->user_code)->first();
         if($user != null){
             if($request->password != $user->password){
-                return response()->json(['status' => 'NG', 'message' => 'Incorrect Password!'], 200);
+                return response()->json(['status' => 'NG', 'message' => 'Incorrect User Password!'], 200);
             }
             return response()->json(['status' => 'OK', 'message' => 'Login successfully!'], 200);
         }else{
