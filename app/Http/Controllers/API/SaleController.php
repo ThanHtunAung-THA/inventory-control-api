@@ -30,7 +30,7 @@ class SaleController extends Controller
     {
         $request->validate([
             'user_code' => 'required|string|max:50',
-            'admin_code' => 'nullable|string|max:50',
+            // 'admin_code' => 'nullable|string|max:50',
             'date' => 'required|date',
             'location' => 'required|string|max:10',
             'item_id' => 'nullable|string',
@@ -72,7 +72,7 @@ class SaleController extends Controller
 
         $request->validate([
             'user_code' => 'nullable|string|max:50',
-            'admin_code' => 'nullable|string|max:50',
+            // 'admin_code' => 'nullable|string|max:50',
             'date' => 'nullable|date',
             'location' => 'nullable|string|max:10',
             'item_id' => 'nullable|string',

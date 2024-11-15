@@ -15,25 +15,25 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->string('user_code', 50)->nullable();
-            $table->string('admin_code', 50)->nullable();
+            $table->string('user_code', 50)->nullable(); //default code is 20001 to 20004 for admin side, 30001 to 30009 for user side
+            // $table->string('admin_code', 50)->nullable();
                 
             // Foreign key relations
             // $table->foreign('user_code')->references('user_code')->on('users')->onDelete('set null');
             // $table->foreign('admin_code')->references('user_code')->on('admins')->onDelete('set null');
-                    
+
             $table->date('date'); // Date
             $table->string('location', 10); // Location
             $table->string('item_id')->nullable(); // Reference ID for item
-            $table->string('customer'); // Customer name or code
-            $table->string('payment_type'); // Payment Type
-            $table->string('currency', 10)->default('Kyats'); // Currency
-            $table->decimal('quantity', 10, 2); // Quantity
-            $table->decimal('discount_and_foc', 15, 2)->default(0); // Discount and FOC
-            $table->decimal('paid', 15, 2)->default(0); // Paid amount
-            $table->decimal('total', 15, 2); // Total amount
-            $table->decimal('balance', 15, 2); // Balance
-
+            $table->string('customer'); // Customer name is customer for dafault or Mr.John, Ms.James
+            $table->string('payment_type'); // Payment Type is COD , Credit Card, Bank Transfer etc.
+            $table->string('currency', 10)->default('Kyats'); // Currency is kyats , USD, etc.
+            $table->integer('quantity'); // Quantity in smallest units, e.g., grams if applicable
+            $table->integer('discount_and_foc')->default(0); // Discount and FOC in cents
+            $table->integer('paid')->default(0); // Paid amount in cents
+            $table->integer('total'); // Total amount in cents
+            $table->integer('balance'); // Balance in cents
+            
             // Timestamps for created and updated
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

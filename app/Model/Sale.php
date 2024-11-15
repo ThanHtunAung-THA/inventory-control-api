@@ -17,7 +17,7 @@ class Sale extends Model
     // Define the attributes that are mass assignable
     protected $fillable = [
         'user_code',
-        'admin_code',
+        // 'admin_code',
         'date',
         'location',
         'item_id',
@@ -34,24 +34,24 @@ class Sale extends Model
     // Relationships (define if user_code and admin_code are referencing other tables)
     
     // Relationship with User model (assuming `user_code` refers to a user)
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_code', 'user_code');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class, 'user_code', 'user_code');
+    // }
 
-    // Relationship with Admin model (assuming `admin_code` refers to an admin)
-    public function admin()
-    {
-        return $this->belongsTo(Admin::class, 'admin_code', 'user_code');
-    }
+    // // Relationship with Admin model (assuming `admin_code` refers to an admin)
+    // public function admin()
+    // {
+    //     return $this->belongsTo(Admin::class, 'admin_code', 'user_code');
+    // }
 
     // Optionally, you might want to add timestamps for when the sale was created and updated
     public $timestamps = true; // Default behavior of 'created_at' and 'updated_at'
 
     // You can also hide sensitive information from JSON serialization
-    protected $hidden = [
-        'user_code', 'admin_code', // hide sensitive foreign keys if needed
-    ];
+    // protected $hidden = [
+    //     'user_code', 'admin_code', // hide sensitive foreign keys if needed
+    // ];
 
     // Accessors or Mutators can be defined for certain fields if needed
 }
