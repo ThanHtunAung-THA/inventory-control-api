@@ -79,8 +79,14 @@ class AdminController extends Controller
             if($request->password != $admin->password){
                 return response()->json(['status' => 'NG', 'message' => 'Incorrect Admin Password!'], 200);
             }
-            return response()->json(['status' => 'OK', 'message' => 'Login successfully!'], 200);
-        }else{
+            return response()->json([
+                'status' => 'OK',
+                'message' => 'Login successfully!',
+                'usercode' => $admin->user_code,  // Return user_code
+                'username' => $admin->name   // Include username in the response
+            ], 200);
+
+            }else{
             return  response()->json(['status' => 'NG', 'message' => 'Admin does not exists!'], 200);
         }
     }
