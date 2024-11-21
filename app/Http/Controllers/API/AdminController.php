@@ -27,7 +27,7 @@ class AdminController extends Controller
 
         $userCode = DB::table('admins')->latest()->value('user_code');
         if($userCode != null){
-            $userCode = $userCode + 1;
+            $userCode = $userCode + 1;      // TODO: CHECK
         }else{
             $userCode = 20001;
         }

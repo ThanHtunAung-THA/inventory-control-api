@@ -16,11 +16,10 @@ class Sale extends Model
 
     // Define the attributes that are mass assignable
     protected $fillable = [
-        'user_code',
-        // 'admin_code',
         'date',
+        'user_code',
+        'item_code',
         'location',
-        'item_id',
         'customer',
         'payment_type',
         'currency',

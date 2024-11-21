@@ -51,11 +51,10 @@ Route::prefix('employee')->namespace('API')->group(function(){
 });
 
 Route::prefix('sale')->namespace('API')->group(function(){
-    Route::get('/get',"SaleController@getAllSales"); // Get all sales
-    Route::get('/get10',"SaleController@getAllSaleBy10"); // Get 10 sales
-    Route::post('/save',"SaleController@store"); // Save a new sale
-    Route::get('/get/{id}','SaleController@show'); // Get a specific sale by ID
-    Route::post('/update/{id}','SaleController@update'); // Update a specific sale by ID
-    Route::delete('/delete/{id}','SaleController@destroy'); // Delete a specific sale by ID
+    Route::get('/get',"SaleController@get_by_latest"); // Get all sales
+    Route::get('/get/{id}','SaleController@get_by_id'); // Get a specific sale by ID
+    Route::post('/add',"SaleController@create"); // Save a new sale
+    Route::post('/edit/{id}','SaleController@update'); // Update a specific sale by ID
+    Route::delete('/destroy/{id}','SaleController@delete'); // Delete a specific sale by ID
 });
 
