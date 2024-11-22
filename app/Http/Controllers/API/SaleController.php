@@ -68,11 +68,10 @@ class SaleController extends Controller
         }
 
         $request->validate([
-            'user_code' => 'nullable|string|max:50',
-            // 'admin_code' => 'nullable|string|max:50',
             'date' => 'nullable|date',
+            'user_code' => 'nullable|string|max:50',
+            'item_code' => 'nullable|string',
             'location' => 'nullable|string|max:10',
-            'item_id' => 'nullable|string',
             'customer' => 'nullable|string',
             'payment_type' => 'nullable|string',
             'currency' => 'nullable|string|max:10',
@@ -91,7 +90,7 @@ class SaleController extends Controller
     // Remove the specified sale from storage
     public function delete($id)
     {
-        $sale = Sale::find($id);
+        $sale = Sale::find($id);    // TODO: Implement soft-delete method. [ insert into deleted_list.tb with type = sale. and del from sale.tb]
 
         if (!$sale) {
             return response()->json(['status' => 'NG', 'message' => 'Sale not found'], 404);
