@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Model\Sale;
+use App\Model\DeletedSale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Hash;
 
 class SaleController extends Controller
@@ -40,7 +42,7 @@ class SaleController extends Controller
     {
         $request->validate([
             'date' => 'required|date',
-            'user_code' => 'required|string|max:50',    // TODO: if admin side, user_code == admin's usercode || if user side, user_code == user's usercode
+            'user_code' => 'required|string|max:50',
             'item_code' => 'required|string',
             'location' => 'required|string|max:10',
             'customer' => 'required|string',
@@ -90,7 +92,7 @@ class SaleController extends Controller
     // Remove the specified sale from storage
     public function delete($id)
     {
-        $sale = Sale::find($id);    // TODO: Implement soft-delete method. [ insert into deleted_list.tb with type = sale. and del from sale.tb]
+        $sale = Sale::find($id);
 
         if (!$sale) {
             return response()->json(['status' => 'NG', 'message' => 'Sale not found'], 404);
@@ -99,5 +101,35 @@ class SaleController extends Controller
         $sale->delete();
 
         return response()->json(['status' => 'OK', 'message' => 'Sale deleted successfully'], 200);
+    }
+
+    // Remove the specified sale from storage
+    public function softdelete($id)
+    {
+        $sale = Sale::find($id);    // TODO: Implement soft-delete method. [ insert into deleted_list.tb with type = sale. and del from sale.tb]
+
+        if (!$sale) {
+            return response()->json(['status' => 'NG', 'message' => 'Sale not found'], 404);
+        }
+        DeletedSale::create([
+            'sale_id' => $sale->id,
+            'date' => $sale->date,
+            'user_code' => $sale->user_code,
+            'item_code' => $sale->item_code,
+            'location' => $sale->location,
+            'customer' => $sale->customer,
+            'payment_type' => $sale->payment_type,
+            'currency' => $sale->currency,
+            'quantity' => $sale->quantity,
+            'discount_and_foc' => $sale->discount_and_foc,
+            'paid' => $sale->paid,
+            'total' => $sale->total,
+            'balance' => $sale->balance,
+
+
+        ]);
+        $sale->delete();
+
+        return response()->json(['status' => 'OK', 'message' => 'Sale deleted successfully', 'deleted_data' => $sale], 200);
     }
 }

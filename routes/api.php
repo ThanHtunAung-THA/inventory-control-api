@@ -55,6 +55,7 @@ Route::prefix('sale')->namespace('API')->group(function(){
     Route::get('/get/{id}','SaleController@get_by_id'); // Get a specific sale by ID
     Route::post('/add',"SaleController@create"); // Save a new sale
     Route::post('/edit/{id}','SaleController@update'); // Update a specific sale by ID
+    Route::delete('/remove/{id}','SaleController@softdelete'); // Delete a specific sale by ID
     Route::delete('/destroy/{id}','SaleController@delete'); // Delete a specific sale by ID
 });
 

@@ -5,14 +5,14 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Sale extends Model
-{
 
-    protected $table = 'sales';
+class DeletedSale extends Model
+{
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'sale_id',
         'date',
         'user_code',
         'item_code',
@@ -28,6 +28,5 @@ class Sale extends Model
     ];
 
     public $timestamps = true;
-
 
 }
