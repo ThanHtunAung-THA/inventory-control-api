@@ -103,7 +103,7 @@ class SaleController extends Controller
         return response()->json(['status' => 'OK', 'message' => 'Sale deleted successfully'], 200);
     }
 
-    // Remove the specified sale from storage
+    // store the record and Remove the specified sale from storage
     public function softdelete($id)
     {
         $sale = Sale::find($id);    // TODO: Implement soft-delete method. [ insert into deleted_list.tb with type = sale. and del from sale.tb]
