@@ -19,8 +19,8 @@ class CreateAdminsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('phone');
-            $table->date('date_of_birth');
+            $table->string('phone')->nullable();
+            $table->date('date_of_birth')->nullable();
             $table->softDeletes('deleted_at'); // deleted_at
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

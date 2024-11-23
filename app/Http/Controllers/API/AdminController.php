@@ -22,6 +22,7 @@ class AdminController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ]);
 
@@ -33,13 +34,15 @@ class AdminController extends Controller
         }
         
         $name = $request->name;
+        $email = $request->email;
         $password = $request->password;
         $result = Admin::insert([
             'user_code' => $userCode,
             'name' => $name,
+            'email' => $email,
             'password' => $password,
         ]);
-        if ($result)    return response()->json(['status' => 'OK', 'message' => 'Data was created successfully!'], 200);
+        if ($result)    return response()->json(['status' => 'OK', 'message' => 'Data was created successfully!', 'data' => $request], 200);
         return response()->json(['status' => 'NG', 'message' => 'Create Failed!'], 200);
     }
 
@@ -89,5 +92,14 @@ class AdminController extends Controller
             }else{
             return  response()->json(['status' => 'NG', 'message' => 'Admin does not exists!'], 200);
         }
+    }
+
+    public function checkEmail($email)
+    {
+        $admin = Admin::where('email', $email)->first();
+        if ($admin) {
+            return response()->json(['status' => 'NG', 'message' => 'Email already exists!'], 200);
+        }
+        return response()->json(['status' => 'OK', 'message' => 'Email is available!'], 200);
     }
 }

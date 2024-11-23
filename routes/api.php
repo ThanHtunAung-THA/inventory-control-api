@@ -30,6 +30,7 @@ Route::prefix('admin')->namespace('API')->group(function(){
     Route::get('/edit/{id}','AdminController@show');
     Route::post('/update/{id}','AdminController@update');
     Route::delete('/delete/{id}','AdminController@delete');
+    Route::post('/check-email/{email}','AdminController@checkEmail');
 });
 
 Route::prefix('user')->namespace('API')->group(function(){
