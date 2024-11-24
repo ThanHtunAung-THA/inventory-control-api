@@ -42,7 +42,11 @@ class AdminController extends Controller
             'email' => $email,
             'password' => $password,
         ]);
-        if ($result)    return response()->json(['status' => 'OK', 'message' => 'Data was created successfully!', 'data' => $request], 200);
+        if ($result)    return response()->json([
+            'status' => 'OK', 
+            'message' => 'Data was created successfully!', 
+            'info' => [ $userCode, $name, $email, $password ]
+        ], 200);
         return response()->json(['status' => 'NG', 'message' => 'Create Failed!'], 200);
     }
 
@@ -77,7 +81,40 @@ class AdminController extends Controller
 
     public function login(Request $request)
     {
-        $admin = Admin::where('user_code',$request->user_code)->first();
+        $request->validate([
+            'user_code' => 'required_without:email',
+            'email' => 'required_without:user_code',
+            'password' => 'required',
+        ]);
+
+        // Check if the input is an email or user code
+        $admin = null;
+        if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
+            // If it's an email, find the admin by email
+            $admin = Admin::where('email', $request->email)->first();
+        } else {
+            // Otherwise, find the admin by user_code
+            $admin = Admin::where('user_code', $request->user_code)->first();
+        }
+
+        // Check if admin exists
+        if ($admin != null) {
+            // Check if the password matches
+            if ($request->password != $admin->password) {
+                return response()->json(['status' => 'NG', 'message' => 'Incorrect Admin Password!'], 200);
+            }
+            // Return success response with user details
+            return response()->json([
+                'status' => 'OK',
+                'message' => 'Login successfully!',
+                'usercode' => $admin->user_code,  // Return user_code
+                'username' => $admin->name   // Include username in the response
+                ], 200);
+        } else {
+            return response()->json(['status' => 'NG', 'message' => 'Admin does not exist!'], 200);
+        }
+
+        /* $admin = Admin::where('user_code',$request->user_code)->first();
         if($admin != null){
             if($request->password != $admin->password){
                 return response()->json(['status' => 'NG', 'message' => 'Incorrect Admin Password!'], 200);
@@ -91,7 +128,8 @@ class AdminController extends Controller
 
             }else{
             return  response()->json(['status' => 'NG', 'message' => 'Admin does not exists!'], 200);
-        }
+        } */
+    
     }
 
     public function checkEmail($email)
