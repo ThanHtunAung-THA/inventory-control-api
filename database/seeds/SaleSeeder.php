@@ -21,7 +21,7 @@ class SaleSeeder extends Seeder
                 'user_code' => '20001',
                 'date' => Carbon::now()->subDays(10), // 10 days ago
                 'location' => 'Yangon',
-                'item_id' => 'ITEM001',
+                'item_code' => 'ITEM001',
                 'customer' => 'Mr. Aung',
                 'payment_type' => 'Credit Card',
                 'currency' => 'Kyats',
@@ -35,7 +35,7 @@ class SaleSeeder extends Seeder
                 'user_code' => '30001',
                 'date' => Carbon::now()->subDays(15), // 15 days ago
                 'location' => 'Yangon',
-                'item_id' => 'ITEM005',
+                'item_code' => 'ITEM005',
                 'customer' => 'Mr. Zaw',
                 'payment_type' => 'Credit Card',
                 'currency' => 'Kyats',
@@ -49,7 +49,7 @@ class SaleSeeder extends Seeder
                 'user_code' => '30002',
                 'date' => Carbon::now()->subDays(12), // 12 days ago
                 'location' => 'Mandalay',
-                'item_id' => 'ITEM006',
+                'item_code' => 'ITEM006',
                 'customer' => 'Ms. Hla',
                 'payment_type' => 'Bank Transfer',
                 'currency' => 'Kyats',
@@ -63,7 +63,7 @@ class SaleSeeder extends Seeder
                 'user_code' => '30003',
                 'date' => Carbon::now()->subDays(8), // 8 days ago
                 'location' => 'Naypyidaw',
-                'item_id' => 'ITEM007',
+                'item_code' => 'ITEM007',
                 'customer' => 'Mr. Min',
                 'payment_type' => 'COD',
                 'currency' => 'Kyats',
@@ -77,7 +77,7 @@ class SaleSeeder extends Seeder
                 'user_code' => '20002',
                 'date' => Carbon::now()->subDays(5), // 5 days ago
                 'location' => 'Mandalay',
-                'item_id' => 'ITEM002',
+                'item_code' => 'ITEM002',
                 'customer' => 'Ms. Su',
                 'payment_type' => 'Bank Transfer',
                 'currency' => 'Kyats',
@@ -91,7 +91,7 @@ class SaleSeeder extends Seeder
                 'user_code' => '30004',
                 'date' => Carbon::now()->subDays(6), // 6 days ago
                 'location' => 'Bago',
-                'item_id' => 'ITEM008',
+                'item_code' => 'ITEM008',
                 'customer' => 'Ms. Khin',
                 'payment_type' => 'Cash',
                 'currency' => 'Kyats',
@@ -105,7 +105,7 @@ class SaleSeeder extends Seeder
                 'user_code' => '30005',
                 'date' => Carbon::now()->subDays(4), // 4 days ago
                 'location' => 'Yangon',
-                'item_id' => 'ITEM009',
+                'item_code' => 'ITEM009',
                 'customer' => 'Mr. Htun',
                 'payment_type' => 'Credit Card',
                 'currency' => 'Kyats',
@@ -119,7 +119,7 @@ class SaleSeeder extends Seeder
                 'user_code' => '30006',
                 'date' => Carbon::now()->subDays(3), // 3 days ago
                 'location' => 'Mandalay',
-                'item_id' => 'ITEM010',
+                'item_code' => 'ITEM010',
                 'customer' => 'Ms. Nwe',
                 'payment_type' => 'Bank Transfer',
                 'currency' => 'Kyats',
@@ -133,7 +133,7 @@ class SaleSeeder extends Seeder
                 'user_code' => '20003',
                 'date' => Carbon::now()->subDays(2), // 2 days ago
                 'location' => 'Naypyidaw',
-                'item_id' => 'ITEM003',
+                'item_code' => 'ITEM003',
                 'customer' => 'Mr. Ko',
                 'payment_type' => 'COD',
                 'currency' => 'Kyats',
@@ -147,7 +147,7 @@ class SaleSeeder extends Seeder
                 'user_code' => '30007',
                 'date' => Carbon::now()->subDays(2), // 2 days ago
                 'location' => 'Naypyidaw',
-                'item_id' => 'ITEM011',
+                'item_code' => 'ITEM011',
                 'customer' => 'Mr. Aye',
                 'payment_type' => 'COD',
                 'currency' => 'Kyats',
@@ -161,7 +161,7 @@ class SaleSeeder extends Seeder
                 'user_code' => '30008',
                 'date' => Carbon::now()->subDays(1), // 1 day ago
                 'location' => 'Bago',
-                'item_id' => 'ITEM012',
+                'item_code' => 'ITEM012',
                 'customer' => 'Ms. Mya',
                 'payment_type' => 'Cash',
                 'currency' => 'Kyats',
@@ -175,7 +175,7 @@ class SaleSeeder extends Seeder
                 'user_code' => '20004',
                 'date' => Carbon::now()->subDays(1), // 1 day ago
                 'location' => 'Bago',
-                'item_id' => 'ITEM004',
+                'item_code' => 'ITEM004',
                 'customer' => 'Ms. Nanda',
                 'payment_type' => 'Cash',
                 'currency' => 'Kyats',
@@ -189,7 +189,7 @@ class SaleSeeder extends Seeder
                 'user_code' => '30009',
                 'date' => Carbon::now(), // today
                 'location' => 'Yangon',
-                'item_id' => 'ITEM013',
+                'item_code' => 'ITEM013',
                 'customer' => 'Mr. Zaw',
                 'payment_type' => 'Credit Card',
                 'currency' => 'Kyats',
