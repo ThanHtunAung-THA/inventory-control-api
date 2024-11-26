@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDeletedPurchasesTable extends Migration
+class CreatePurchasesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateDeletedPurchasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('deleted_purchases', function (Blueprint $table) {
+        Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('purchase_id');
             $table->date('date');
 
             $table->string('user_code', 50)->nullable(); //default code is 20001 to 20004 for admin side, 30001 to 30009 for user side
@@ -43,6 +42,6 @@ class CreateDeletedPurchasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deleted_purchases');
+        Schema::dropIfExists('purchases');
     }
 }

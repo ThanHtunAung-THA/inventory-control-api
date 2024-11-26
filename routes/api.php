@@ -60,3 +60,12 @@ Route::prefix('sale')->namespace('API')->group(function(){
     Route::delete('/destroy/{id}','SaleController@delete'); // Delete a specific sale by ID
 });
 
+Route::prefix('purchase')->namespace('API')->group(function(){
+    Route::get('/get',"PurchaseController@get_by_latest"); // Get all Purchases
+    Route::get('/get/{id}','PurchaseController@get_by_id'); // Get a specific Purchase by ID
+    Route::post('/add',"PurchaseController@create"); // Save a new Purchase
+    Route::post('/edit/{id}','PurchaseController@update'); // Update a specific Purchase by ID
+    Route::delete('/remove/{id}','PurchaseController@softdelete'); // Delete a specific Purchase by ID
+    Route::delete('/destroy/{id}','PurchaseController@delete'); // Delete a specific Purchase by ID
+});
+

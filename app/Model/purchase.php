@@ -5,14 +5,13 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
-class DeletedPurchase extends Model
+class purchase extends Model
 {
+    protected $table = 'purchases';
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'purchase_id',
         'date',
         'user_code',
         'item_code',
@@ -28,5 +27,6 @@ class DeletedPurchase extends Model
     ];
 
     public $timestamps = true;
+
 
 }
