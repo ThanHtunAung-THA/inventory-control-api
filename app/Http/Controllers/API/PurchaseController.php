@@ -16,7 +16,7 @@ class PurchaseController extends Controller
     // Display a listing of purchases
     public function get_by_latest()
     {
-        $result = Purchase::orderBy('date', 'desc')->get();
+        $result = Purchase::orderBy('created_at', 'desc')->get();
         if (count($result) > 0) return response()->json(['status' => 'OK', 'data' => $result], 200);
         return response()->json(['status' => 'NG', 'message' => 'Data does not exist!'], 200);
     }

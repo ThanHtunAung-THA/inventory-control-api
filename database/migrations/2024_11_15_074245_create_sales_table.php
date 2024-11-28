@@ -20,15 +20,16 @@ class CreateSalesTable extends Migration
             $table->string('user_code', 50)->nullable(); //default code is 20001 to 20004 for admin side, 30001 to 30009 for user side
             $table->string('item_code')->nullable();
 
-            $table->string('location', 10);
-            $table->string('customer');
-            $table->string('payment_type');
+            $table->string('location', 10)->default('Yangon');
+            $table->string('customer')->default('Customer');
+            $table->string('payment_type')->default('Cash');
             $table->string('currency', 10)->default('Kyats');
-            $table->integer('quantity');
-            $table->integer('discount_and_foc')->default(0);
-            $table->integer('paid')->default(0);
-            $table->integer('total');
-            $table->integer('balance');
+
+            $table->bigInteger('quantity')->default(0); // Changed to bigInteger
+            $table->bigInteger('discount_and_foc')->default(0); // Changed to bigInteger
+            $table->bigInteger('paid')->default(0); // Changed to bigInteger
+            $table->bigInteger('total')->default(0); // Changed to bigInteger
+            $table->bigInteger('balance')->default(0); // Changed to bigInteger
             
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

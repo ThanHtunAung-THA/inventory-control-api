@@ -16,7 +16,7 @@ class SaleController extends Controller
     // Display a listing of sales
     public function get_by_latest()
     {
-        $result = Sale::orderBy('date', 'desc')->get();
+        $result = Sale::orderBy('created_at', 'desc')->get();
         if (count($result) > 0) return response()->json(['status' => 'OK', 'data' => $result], 200);
         return response()->json(['status' => 'NG', 'message' => 'Data does not exist!'], 200);
     }
