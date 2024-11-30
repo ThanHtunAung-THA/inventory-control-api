@@ -25,21 +25,24 @@ Route::get('lol',function(){
 
 Route::prefix('admin')->namespace('API')->group(function(){
     Route::get('/login',"AdminController@login");
-    Route::get('/get',"AdminController@getAllAdmin");
-    Route::post('/save',"AdminController@save");
-    Route::get('/edit/{id}','AdminController@show');
-    Route::post('/update/{id}','AdminController@update');
-    Route::delete('/delete/{id}','AdminController@delete');
+    Route::get('/get',"AdminController@get_by_latest");
+    Route::get('/get/{id}','AdminController@get_by_id'); // Get a specific sale by ID
+    Route::post('/add',"AdminController@create");
+    Route::post('/edit/{id}','AdminController@update');
+    Route::delete('/remove/{id}','AdminController@softdelete'); // Delete a specific sale by ID
+    Route::delete('/destroy/{id}','AdminController@delete'); // Delete a specific sale by ID
     Route::post('/check-email/{email}','AdminController@checkEmail');
 });
 
 Route::prefix('user')->namespace('API')->group(function(){
     Route::get('/login',"UserController@login");
-    Route::get('/get',"UserController@getAllUser");
-    Route::post('/save',"UserController@save");
-    Route::get('/edit/{id}','UserController@show');
-    Route::post('/update/{id}','UserController@update');
-    Route::delete('/delete/{id}','UserController@delete');
+    Route::get('/get',"UserController@get_by_latest");
+    Route::get('/get/{id}','UserController@get_by_id'); // Get a specific sale by ID
+    Route::post('/add',"UserController@create");
+    Route::post('/edit/{id}','UserController@update');
+    Route::delete('/remove/{id}','UserController@softdelete'); // Delete a specific sale by ID
+    Route::delete('/destroy/{id}','UserController@delete'); // Delete a specific sale by ID
+
 });
 
 Route::prefix('employee')->namespace('API')->group(function(){

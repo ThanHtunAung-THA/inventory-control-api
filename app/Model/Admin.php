@@ -11,5 +11,16 @@ class Admin extends Model
 
     protected $table = 'admins';
 
+    protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'user_code', 
+        'name', 
+        'email', 
+        'password', 
+        'phone', 
+        'date_of_birth',
+    ];
+    
     protected $guarded = [];
 }
