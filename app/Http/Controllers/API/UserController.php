@@ -57,7 +57,8 @@ class UserController extends Controller
             'user_code' => $userCode,
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password), // Hash the password
+            // 'password' => Hash::make($request->password), // // TODO: using hashed type for future use
+            'password' =>  $request->password,
         ];
 
         if ($request->has('phone')) {
@@ -107,7 +108,8 @@ class UserController extends Controller
         $data = [
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password), // Hash the password
+            // 'password' => Hash::make($request->password), // // TODO: using hashed type for future use
+            'password' =>  $request->password,
         ];
 
         if ($request->has('phone')) {
@@ -176,15 +178,14 @@ class UserController extends Controller
 
         if ($user != null) {
             if ($request->password != $user->password) {
-            // if (!Hash::check($request->password, $user->password)) {
+            // if (!Hash::check($request->password, $user->password)) {                       // TODO: using hashed type for future use
                 return response()->json(['status' => 'NG', 'message' => 'Incorrect User Password!'], 200);
             }
-            // Return success response with user details
             return response()->json([
                 'status' => 'OK',
                 'message' => 'Login successfully!',
-                'usercode' => $user->user_code,  // Return user_code
-                'username' => $user->name   // Include username in the response
+                'usercode' => $user->user_code,
+                'username' => $user->name
                 ], 200);
         } else {
             return response()->json(['status' => 'NG', 'message' => 'User does not exist!'], 200);

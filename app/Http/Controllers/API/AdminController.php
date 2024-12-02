@@ -57,7 +57,8 @@ class AdminController extends Controller
             'user_code' => $userCode,
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password), // Hash the password
+            // 'password' => Hash::make($request->password), // // TODO: using hashed type for future use
+            'password' =>  $request->password,
         ];
 
         if ($request->has('phone')) {
@@ -107,7 +108,8 @@ class AdminController extends Controller
         $data = [
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password), // Hash the password
+            // 'password' => Hash::make($request->password), // // TODO: using hashed type for future use
+            'password' =>  $request->password,
         ];
 
         if ($request->has('phone')) {
@@ -179,9 +181,9 @@ class AdminController extends Controller
 
         // Check if admin exists
         if ($admin != null) {
-            // Check if the password matches
             if ($request->password != $admin->password) {
-                return response()->json(['status' => 'NG', 'message' => 'Incorrect Admin Password!'], 200);
+                // if (!Hash::check($request->password, $user->password)) {                       // TODO: using hashed type for future use
+                    return response()->json(['status' => 'NG', 'message' => 'Incorrect Admin Password!'], 200);
             }
             // Return success response with user details
             return response()->json([
