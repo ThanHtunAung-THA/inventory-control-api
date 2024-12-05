@@ -189,8 +189,9 @@ class AdminController extends Controller
             return response()->json([
                 'status' => 'OK',
                 'message' => 'Login successfully!',
-                'usercode' => $admin->user_code,  // Return user_code
-                'username' => $admin->name   // Include username in the response
+                'userid' => $admin->id,
+                'usercode' => $admin->user_code,
+                'username' => $admin->name
                 ], 200);
         } else {
             return response()->json(['status' => 'NG', 'message' => 'Admin does not exist!'], 200);

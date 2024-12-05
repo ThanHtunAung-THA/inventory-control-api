@@ -184,6 +184,7 @@ class UserController extends Controller
             return response()->json([
                 'status' => 'OK',
                 'message' => 'Login successfully!',
+                'userid' => $user->id,
                 'usercode' => $user->user_code,
                 'username' => $user->name
                 ], 200);
