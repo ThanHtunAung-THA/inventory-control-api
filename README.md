@@ -5,6 +5,10 @@ This is a prototype of inventory control management api. created by using larave
 
 3.create database --> inventory_control_db
 4.run these in proj.root as follows
+
     php artisan migrate
+    
     php artisan db:seed 
+    
     php aritisan serve
+    
