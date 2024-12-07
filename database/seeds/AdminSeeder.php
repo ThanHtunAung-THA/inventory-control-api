@@ -19,7 +19,7 @@ class AdminSeeder extends Seeder
                 'name' => 'admin1',
                 'email' => 'admin1@gmail.com',
                 // 'password' => Hash::make('12345'), // It's better to hash passwords
-                'password' => '12345', // It's better to hash passwords
+                'password' => '12345', // It's better to test with this password
                 'phone' => '09123456789',
                 'date_of_birth' => '1990-11-1',
             ],
